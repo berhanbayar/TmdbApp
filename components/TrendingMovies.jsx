@@ -2,14 +2,14 @@ import { View, Text, Image, Dimensions} from 'react-native';
 import React from 'react';
 import Carousel from 'react-native-reanimated-carousel';
 import { TouchableWithoutFeedback} from 'react-native-gesture-handler';
-import { useNavigation } from 'expo-router';
+import { router, useNavigation } from 'expo-router';
 
 const {width, height} = Dimensions.get('window');
 
 export default function TrendingMovies ({data}) {
     const navigation = useNavigation();
-    const handleClick = () => {
-        navigation.navigate('Movie', item);
+    const handleClick = (item) => {
+        navigation.navigate('moviescreen', item);
     }
     // const data = [
     //     { id: 1, image: require('../assets/images/movieposter-1.jpg') },
@@ -17,7 +17,7 @@ export default function TrendingMovies ({data}) {
     //     { id: 3, image: require('../assets/images/movieposter-3.jpg') },
     //   ];
   return (
-    <View className='mb-8'>
+    <View>
       <Text className='text-colors text-xl mx-4 mb-5'>TrendingMovies</Text>
     <Carousel 
         loop={true}
@@ -28,7 +28,7 @@ export default function TrendingMovies ({data}) {
         data={data}
         renderItem={({item}) => <MovieCard item={item} handleClick={handleClick}/>}
         width={width}
-        height={height*0.62}
+        height={height*0.42}
     />
     </View>
   )
@@ -36,7 +36,7 @@ export default function TrendingMovies ({data}) {
 
 const MovieCard = ({item, handleClick }) => {
     return (
-        <TouchableWithoutFeedback style={{display: 'flex', alignItems:'center'}} onPress={handleClick}>
+        <TouchableWithoutFeedback style={{display: 'flex', alignItems:'center'}} onPress={() => handleClick(item)}>
             <Image
                 source={require("../assets/images/movieposter-1.jpg")}
                 style={{

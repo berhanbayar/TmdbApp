@@ -24,16 +24,16 @@ const index = () => {
             </TouchableOpacity>
         </View>
        </SafeAreaView>
-
        <ScrollView
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{paddingBottom: 10}}
+        contentContainerStyle={{paddingBottom: 1}}
        >
         {/* Trend Filmler */}
        <TrendingMovies data={TrendingMovies}/>
-
        {/* Yakında Gelecek Filmler */}
        <MovieList title="Yakında" data={upcoming} />
+        {/* Yakında Gelecek Filmler */}
+       <MovieList title="En çok beğenilenler" data={topRated} />
        </ScrollView>
     </View>
     );

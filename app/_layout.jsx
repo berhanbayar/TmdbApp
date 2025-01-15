@@ -8,6 +8,7 @@ import 'react-native-reanimated';
 import "../global.css";
 
 import { useColorScheme } from '@/hooks/useColorScheme';
+import { NavigationContainer } from '@react-navigation/native';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -36,11 +37,12 @@ export default function RootLayout() {
   }
 
   return (
+    
     <ColorSchemeContext.Provider value={colorScheme}>
       <Stack>
         <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="moviescreen" options={{ headerShown: false }} />
       </Stack>
-      <StatusBar style="auto" />
     </ColorSchemeContext.Provider>
   );
 }
