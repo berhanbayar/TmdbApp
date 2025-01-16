@@ -88,7 +88,7 @@ const moviescreen = () => {
         <Cast navigation={navigation} cast={cast}  />
 
         {/* Similar movies */}
-        <MovieList title="Benzer Filmler" hideSeeAll={true} data={similarMovies}></MovieList>
+        {/* <MovieList title="Benzer Filmler" hideSeeAll={true} data={similarMovies}></MovieList> */}
     </ScrollView>
   )
 }
