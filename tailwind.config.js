@@ -13,6 +13,8 @@ module.exports = {
         textDark: '#d4d4d4',  // Dark mode text color
         iconLight: '#000', // Light mode icon color (black)
         iconDark: '#fff',  // Dark mode icon color (white)
+        borderLight: '000',
+        borderDark: '#fafafa'
       },
     },
   },
@@ -42,6 +44,12 @@ module.exports = {
           backgroundColor: theme('colors.buttonsBgLight'), // Light mode icon color
           '@media (prefers-color-scheme: dark)': {
             backgroundColor: theme('colors.buttonsBgDark'), // Dark mode icon color
+          },
+        },
+        '.border-colors': {
+          color: theme('colors.borderLight'), // Light mode icon color
+          '@media (prefers-color-scheme: dark)': {
+            color: theme('colors.borderDark'), // Dark mode icon color
           },
         },
       };

@@ -44,12 +44,12 @@ const index = () => {
        <SafeAreaView className="mb-3 mt-10">
         <StatusBar style='auto'/>
         <View className='flex-row justify-between items-center mx-4'>
-        <MaterialIcons name="menu" size={30} color="white"/>
+        <MaterialIcons name="menu" size={30} color="#eab308"/>
             <Text className='text-colors text-3xl font-bold'>Movies</Text>
             <TouchableOpacity
                 onPress={() => navigation.navigate('Search')}
                 >
-                <MaterialIcons name='search' size={30} color="white"/>
+                <MaterialIcons name='search' size={30} color="#eab308"/>
             </TouchableOpacity>
         </View>
        </SafeAreaView>

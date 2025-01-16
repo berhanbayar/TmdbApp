@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, ScrollView, Dimensions, Image } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, Dimensions, Image, useColorScheme } from 'react-native';
 import React, { useState } from 'react';
 import { useRoute } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -9,11 +9,12 @@ import { useNavigation } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
 import Cast from '../components/Cast';
 import MovieList from '../components/MovieList';
-import { fetchMovieCredits, fetchMovieDetails, fetchSimilarMovies, image500 } from '../api/moviedb';
+import { fallbackMoviePoster, fetchMovieCredits, fetchMovieDetails, fetchSimilarMovies, image500 } from '../api/moviedb';
 
 const {width, height}= Dimensions.get('window');
 
 const moviescreen = () => {
+  const colorScheme = useColorScheme(); 
   const {params: item} = useRoute();
   const [isFavorited, toggleFavorited] = useState(false);
   const navigation = useNavigation();
@@ -40,7 +41,11 @@ const moviescreen = () => {
     const data = await fetchSimilarMovies(id);
     if (data.results) setsimilarMovies(data.results);
 }
-  return (
+    const gradientColors =
+        colorScheme === 'dark'
+        ? ['transparent', 'rgba(38,38,38,0.8)', 'rgba(38,38,38,1)']
+        : ['transparent', 'rgba(250,250,250,0.8)', 'rgba(250,250,250,1)'];
+    return (
     <ScrollView
         contentContainerStyle={{paddingBottom: 20}}
         className="flex-1 bg-colors">
@@ -56,11 +61,11 @@ const moviescreen = () => {
             </SafeAreaView>
             <View>
                 <Image 
-                    source={{uri: image500(movie?.poster_path)}}
+                    source={{uri: image500(movie?.poster_path|| fallbackMoviePoster)}}
                     style={{width, height: height*0.55}}
                 />
                 <LinearGradient
-                    colors={['transparent', 'rgba(23,23,23,0.8)', 'rgba(38,38,38,1)']}
+                    colors={gradientColors}
                     style={{width, height: height * 0.40}}
                     start={{x: 0.5, y: 0}}
                     end={{x: 0.5, y: 1}}
@@ -71,7 +76,7 @@ const moviescreen = () => {
         {/* movie details */}
         <View style={{marginTop: -(height*0.09)}} className="space-y-3">
         {/* title */}
-            <Text className="text-colors text-center text-3xl font-bold tracking-wider">
+            <Text className="text-colors text-center text-2xl font-bold tracking-wider">
                 {movie?.title}
             </Text>
             {/* status relese runtime */}

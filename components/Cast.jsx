@@ -19,7 +19,7 @@ export default function Cast({cast, navigation}){
                 <TouchableOpacity
                     key={index}
                     className="mr-4 items-center"
-                    onPress={() => navigation.navigate('Person', {person})}
+                    onPress={() => navigation.navigate('Person', person)}
                     >
 
                     <View className="overflow-hidden rounded-full w-24 h-24 items-center border border-neutral-500">
