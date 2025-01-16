@@ -5,16 +5,20 @@ import { useNavigation } from 'expo-router';
 
 const {width, height}= Dimensions.get('window');
 
-export default function MovieList ({title, data}) {
+export default function MovieList ({title, data, hideSeeAll}) {
     const movieName="Movie Name: This War End";
     const navigation = useNavigation();
   return (
   <View className="mb-8">
     <View className="flex-row justify-between items-center mb-5 mx-4">
       <Text className="text-neutral-300 text-xl font-bold">{title}</Text>
-      <TouchableOpacity>
-        <Text className="text-colors text-md">Hepsini Gör</Text>
-      </TouchableOpacity>
+        {
+          !hideSeeAll && (
+            <TouchableOpacity>
+            <Text className="text-colors text-md">Hepsini Gör</Text>    
+            </TouchableOpacity>
+          )
+        } 
     </View>
     <ScrollView
       horizontal
@@ -25,7 +29,7 @@ export default function MovieList ({title, data}) {
       return(      
         <TouchableOpacity
           key={index}
-          onPress={() => navigation.navigate('moviescreen', {item})}>
+          onPress={() => navigation.push('moviescreen', {item})}>
           <View className="space-y-1 mr-4">
           <Image
             source={require('../assets/images/movieposter-3.jpg')}

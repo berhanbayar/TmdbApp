@@ -5,10 +5,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        buttonsBgLight: '#262626',
+        buttonsBgDark: '#eab308',
         backgroundLight: '#fafafa',
         backgroundDark: '#262626',
         textLight: '#000', // Light mode text color
-        textDark: '#eab308',  // Dark mode text color
+        textDark: '#d4d4d4',  // Dark mode text color
         iconLight: '#000', // Light mode icon color (black)
         iconDark: '#fff',  // Dark mode icon color (white)
       },
@@ -34,6 +36,12 @@ module.exports = {
           color: theme('colors.iconLight'), // Light mode icon color
           '@media (prefers-color-scheme: dark)': {
             color: theme('colors.iconDark'), // Dark mode icon color
+          },
+        },
+        '.btnbg-colors': {
+          backgroundColor: theme('colors.buttonsBgLight'), // Light mode icon color
+          '@media (prefers-color-scheme: dark)': {
+            backgroundColor: theme('colors.buttonsBgDark'), // Dark mode icon color
           },
         },
       };
