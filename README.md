@@ -67,7 +67,7 @@ Sunucuyu çalıştırın
   
 ## Screenshots
 
-![Home Page](https://i.hizliresim.com/cjmyfxm.png)
+![Home Page](https://hizliresim.com/cjmyfxm)
 
 ![Home Page - Dark](https://i.hizliresim.com/bv1dcw0.png)
 
