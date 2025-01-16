@@ -16,7 +16,7 @@ export default function MovieList ({title, data, hideSeeAll}) {
         {
           !hideSeeAll && (
             <TouchableOpacity>
-            <Text className="text-colors text-md">Hepsini Gör</Text>    
+            <Text className="text-colors text-md">See Allr</Text>    
             </TouchableOpacity>
           )
         } 

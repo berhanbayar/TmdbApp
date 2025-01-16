@@ -60,11 +60,11 @@ const index = () => {
         {/* Vizyondaki Filmler */}
        {NowPlayingMovies.length>0 && <NowPlaying data={NowPlayingMovies}/>}
        {/* Yakında Gelecek Filmler */}
-       <MovieList title="Yakında" data={upcomingMovies} />
+       <MovieList title="Up Coming" data={upcomingMovies} />
         {/* En çok beğenilen  Filmler */}
-       <MovieList title="En çok beğenilenler" data={topRatedMovies} />
+       <MovieList title="Top Rated" data={topRatedMovies} />
 
-       <MovieList title="Trend filmler" data={trendMovies} />
+       <MovieList title="Trend Movies" data={trendMovies} />
        </ScrollView>
     </View>
     );

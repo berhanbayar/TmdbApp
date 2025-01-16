@@ -14,7 +14,7 @@ export default function Search  () {
     <SafeAreaView className="bg-colors flex-1">
      <View className="mx-4 mt-3 mb-3 flex-row justify-between items-center border border-neutral-300 rounded-full">
         <TextInput
-            placeholder='Aradığınız filmi yazın...'
+            placeholder='Search movie here...'
             placeholderTextColor={'lightgray'}
             className="pb-1 pl-6 flex-1 text-base font-semibold text-colors tracking-wider"
             >
@@ -36,7 +36,7 @@ export default function Search  () {
                       className="space-y-5"
                   >
                       <Text className="text-white font-semibold ml-1">
-                          Arama Sonuçları ({results.length})
+                          Results ({results.length})
                       </Text>
                       <View className="flex-row justify-between flex-wrap mt-5">
                           {results.map((item, index) => {
@@ -69,7 +69,7 @@ export default function Search  () {
                         source={require("../assets/images/notfound-image.png")}
                         style={{width: 300, height: 250}}
                    />
-                   <Text className="text-3xl text-colors font-light">Biraz film bulalım!</Text>
+                   <Text className="text-3xl text-colors font-light">Lets find a movie</Text>
                 </View>
             )
         }

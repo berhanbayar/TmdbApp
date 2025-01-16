@@ -9,6 +9,7 @@ import { useNavigation } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
 import Cast from '../components/Cast';
 import MovieList from '../components/MovieList';
+import { fetchMovieCredits, fetchMovieDetails, fetchSimilarMovies, image500 } from '../api/moviedb';
 
 const {width, height}= Dimensions.get('window');
 
@@ -16,12 +17,29 @@ const moviescreen = () => {
   const {params: item} = useRoute();
   const [isFavorited, toggleFavorited] = useState(false);
   const navigation = useNavigation();
-  const [cast, setCast] = useState([1,2,3,4,5]);
-  const [similarMovies, setsimilarMovies] = useState([1,2,3,4,5]);
+  const [cast, setCast] = useState([]);
+  const [similarMovies, setsimilarMovies] = useState([]);
+  const [movie, setMovie] = useState({});
   useEffect(() => {
-    //movie details api
+    getMovieDetails(item.id);
+    getMovieCredits(item.id);
+    getMovieSimilars(item.id);
   }, [item])
   
+  const getMovieDetails =  async id=> {
+        const data = await fetchMovieDetails(id);
+        if (data) setMovie(data);
+  }
+
+  const getMovieCredits =  async id=> {
+    const data = await fetchMovieCredits(id);
+    if (data) setCast(data.cast);
+  }
+
+  const getMovieSimilars =  async id=> {
+    const data = await fetchSimilarMovies(id);
+    if (data.results) setsimilarMovies(data.results);
+}
   return (
     <ScrollView
         contentContainerStyle={{paddingBottom: 20}}
@@ -38,7 +56,7 @@ const moviescreen = () => {
             </SafeAreaView>
             <View>
                 <Image 
-                    source={require('../assets/images/movieposter-2.jpg')}
+                    source={{uri: image500(movie?.poster_path)}}
                     style={{width, height: height*0.55}}
                 />
                 <LinearGradient
@@ -54,33 +72,32 @@ const moviescreen = () => {
         <View style={{marginTop: -(height*0.09)}} className="space-y-3">
         {/* title */}
             <Text className="text-colors text-center text-3xl font-bold tracking-wider">
-                Moviename
+                {movie?.title}
             </Text>
             {/* status relese runtime */}
             <Text className="text-colors text-center text-base font-light tracking-wider">
-                Yayınlandı | 2020 | 170 dakika
+               {movie?.status} • {movie?.release_date?.split('-')[0]} • {movie?.runtime} minutes
             </Text>
             
             {/* genres */}
-            <View className="flex-row justify-center my-4 space-x-3">
-            <Text className="text-colors text-center text-base font-light">
-                Aksiyon |
-            </Text>
-            <Text className="text-colors text-center text-base font-light ml-3">
-                Macera |
-            </Text>
-            <Text className="text-colors text-center text-base font-light ml-3">
-                Komedi |
-            </Text>
+            <View className="flex-row justify-center my-4 space-x-4">
+                {
+                    movie?.genres?.map((genre, index)=> {
+                        const showDot = index+1 != movie.genres.length;
+                        return (
+                            <Text key={index} className="text-colors font-light text-base text-center ml-2">
+                                {genre?.name} {showDot? "•":null}
+                            </Text>
+                        )
+                    })
+                }
             </View>
 
              {/* description */}
             <Text className="text-colors mx-4 tracking-wide">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus illo eligendi 
-                provident quidem tempore aspernatur dignissimos quisquam officiis reiciendis, sunt nesciunt, 
-                dicta error numquam, id a porro eos expedita suscipit? Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-                Illum vel magni accusantium architecto doloremque fuga totam mollitia consequatur harum vitae. Reiciendis nisi rem, 
-                perspiciatis inventore aut recusandae ea consequuntur eaque.
+              {
+                movie?.overview
+              }
             </Text>
         </View>
         
@@ -88,7 +105,7 @@ const moviescreen = () => {
         <Cast navigation={navigation} cast={cast}  />
 
         {/* Similar movies */}
-        {/* <MovieList title="Benzer Filmler" hideSeeAll={true} data={similarMovies}></MovieList> */}
+        <MovieList title="Similar Movies" hideSeeAll={true} data={similarMovies}></MovieList>
     </ScrollView>
   )
 }
