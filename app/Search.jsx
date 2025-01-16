@@ -9,7 +9,6 @@ import { debounce } from 'lodash';
 const {width, height}= Dimensions.get('window');
 
 export default function Search  () {
-  const movieName = "Movie Name: The War End";
   const [results, setResults] = useState([])
   const navigation = useNavigation();
   const handleSearch = value => {
@@ -34,7 +33,7 @@ export default function Search  () {
         <TextInput
             onChangeText={handleTextDebounce}
             placeholder='Search movie here...'
-            placeholderTextColor={'lightgray'}
+            placeholderTextColor={'gray'}
             className="pb-1 pl-6 flex-1 text-base font-semibold text-colors tracking-wider"
             >
         </TextInput>
@@ -42,7 +41,7 @@ export default function Search  () {
             onPress={() => navigation.navigate('index')}
             className="rounded-full p-3 m-1 bg-colors"
         >
-        <MaterialIcons name='cancel' size={25} color="white"></MaterialIcons>
+        <MaterialIcons name='cancel' size={25} color="#eab308"></MaterialIcons>
         </TouchableOpacity>
      </View>
 
@@ -54,7 +53,7 @@ export default function Search  () {
                       contentContainerStyle={{ paddingHorizontal: 15 }}
                       className="space-y-5"
                   >
-                      <Text className="text-white font-semibold ml-1">
+                      <Text className="text-colors font-semibold ml-1">
                           Results ({results.length})
                       </Text>
                       <View className="flex-row justify-between flex-wrap mt-5">

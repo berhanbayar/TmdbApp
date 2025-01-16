@@ -43,7 +43,7 @@ export default function Person({person}) {
             {/* person details  */}
             <View>
                 <View className="flex-row justify-center">
-                    <View className="items-center rounded-full overflow-hidden h-72 w-72 border-2 border-neutral-500">
+                    <View className="items-center rounded-full overflow-hidden h-72 w-72 border-2 border-colors">
                     <Image
                         // source={require('../assets/images/cast-1.jpg')}
                         source={{uri: image342(personDetails?.profile_path) || fallbackPersonImage}}
@@ -52,12 +52,12 @@ export default function Person({person}) {
                     </View>
                 </View>
                 <View className="mt-6">
-                    <Text className="text-3xl text-white font-bold text-center">
+                    <Text className="text-3xl text-colors font-bold text-center">
                         {
                             personDetails?.name
                         }
                     </Text>
-                    <Text className="text-base text-neutral-500 text-center">
+                    <Text className="text-base text-colors text-center">
                        {
                             personDetails?.place_of_birth
                        }
@@ -86,8 +86,8 @@ export default function Person({person}) {
                     </View>
                 </View>
                 <View className="my-6 mx-4 space-y-2">
-                    <Text className="text-white text-lg">Biography</Text>
-                    <Text className="text-neutral-400 tracking-wide">
+                    <Text className="text-colors text-lg">Biography</Text>
+                    <Text className="text-colors tracking-wide">
                        {
                          personDetails?.biography || 'N/A'
                        }
@@ -95,7 +95,7 @@ export default function Person({person}) {
                 </View>
 
                 {/* movies */}
-                <MovieList title={'Filmleri'} data={personalMovies} hideSeeAll={true}/>
+                <MovieList title={'Movies'} data={personalMovies} hideSeeAll={true}/>
             </View>
         </ScrollView>
     )
