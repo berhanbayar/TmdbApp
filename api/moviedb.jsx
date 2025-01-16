@@ -2,19 +2,22 @@ import axios from 'axios';
 import { apiKey } from '../constants/constans.jsx';
 
 // Base URL
-const apibaseUrl = "https://api.themoviedb.org/3"; //https://api.themoviedb.org/3/movie/939243?api_key=54e2a16537f715ecc78e330da693bc76`;
+const apibaseUrl = "https://api.themoviedb.org/3"; //https://api.themoviedb.org/3/person/3291?api_key=54e2a16537f715ecc78e330da693bc76`;
 
 // Endpoints
 const NowPlayingMoviesEndPoint = `${apibaseUrl}/movie/now_playing?api_key=${apiKey}`; 
 const TrendMoviesEndPoint = `${apibaseUrl}/movie/popular?api_key=${apiKey}`;
 const UpComingMoviesEndPoint = `${apibaseUrl}/movie/upcoming?api_key=${apiKey}`;
 const TopRatedMoviesEndPoint = `${apibaseUrl}/movie/top_rated?api_key=${apiKey}`;
-
 const SearchEndPoint = `${apibaseUrl}/search/movie?api_key=${apiKey}`;
+
 
 const MovieDetailsEndPoint = id => `${apibaseUrl}/movie/${id}?api_key=${apiKey}`;
 const MovieCreditsEndPoint = id => `${apibaseUrl}/movie/${id}/credits?api_key=${apiKey}`;
 const SimilarMoviesEndPoint = id => `${apibaseUrl}/movie/${id}/similar?api_key=${apiKey}`;
+
+const PersonDetailsEndPoint = id => `${apibaseUrl}/person/${id}?api_key=${apiKey}`;
+const PersonMoviesEndPoint = id => `${apibaseUrl}/person/${id}/movie_credits?api_key=${apiKey}`;
 
 export const image500 = path=> path ? `https://image.tmdb.org/t/p/w500${path}` : null;
 export const image342 = path=> path ? `https://image.tmdb.org/t/p/w342${path}` : null;
@@ -72,3 +75,15 @@ export const fetchMovieCredits = id => {
 export const fetchSimilarMovies = id => {
     return apiCall(SimilarMoviesEndPoint(id));
 };
+
+export const fetchPersonDetails = id => {
+    return apiCall(PersonDetailsEndPoint(id));
+};
+
+export const fetchPersonMovies = id => {
+    return apiCall(PersonMoviesEndPoint(id));
+};
+
+export const searchMovies = params => {
+    return apiCall(SearchEndPoint, params);
+}
