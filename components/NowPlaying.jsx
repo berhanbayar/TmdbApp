@@ -3,10 +3,11 @@ import React from 'react';
 import Carousel from 'react-native-reanimated-carousel';
 import { TouchableWithoutFeedback} from 'react-native-gesture-handler';
 import { router, useNavigation } from 'expo-router';
+import { image500 } from '../api/moviedb';
 
 const {width, height} = Dimensions.get('window');
 
-export default function TrendingMovies ({data}) {
+export default function NowPlaying ({data}) {
     const navigation = useNavigation();
     const handleClick = (item) => {
         navigation.navigate('moviescreen', item);
@@ -18,7 +19,7 @@ export default function TrendingMovies ({data}) {
     //   ];
   return (
     <View>
-      <Text className='text-colors text-xl mx-4 mb-5'>TrendingMovies</Text>
+      <Text className='text-colors text-xl mx-4 mb-5'>Vizyondakiler</Text>
     <Carousel 
         loop={true}
         snapEnabled={true}
@@ -35,10 +36,12 @@ export default function TrendingMovies ({data}) {
 }
 
 const MovieCard = ({item, handleClick }) => {
+    console.log("poster path:");
     return (
         <TouchableWithoutFeedback style={{display: 'flex', alignItems:'center'}} onPress={() => handleClick(item)}>
             <Image
-                source={require("../assets/images/movieposter-1.jpg")}
+                // source={require("../assets/images/movieposter-1.jpg")}
+                source={{uri: image500(item.poster_path)}}
                 style={{
                     width: width*0.6,
                     height: height*0.4

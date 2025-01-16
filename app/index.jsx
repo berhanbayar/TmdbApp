@@ -1,17 +1,43 @@
 import { View, Text, Platform, TouchableOpacity, ScrollView } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { MaterialIcons } from '@expo/vector-icons';
-import TrendingMovies from '../components/TrendingMovies'
+import NowPlaying from '../components/NowPlaying';
 import MovieList from  '../components/MovieList';
 import { useNavigation } from 'expo-router';
+import { fetchNowPlayingMovies, fetchTopRatedMovies, fetchTrendMovies, fetchUpComingMovies } from '../api/moviedb';
 
 const index = () => {
-    const [trending, setTranding] = useState([1,2,3]);
-    const [upcoming, setUpcoming] = useState([1,2,3]);
-    const [topRated, setToprated] = useState([1,2,3]);
+    const [NowPlayingMovies, setNowPlayingMovies] = useState([]);
+    const [trendMovies, setTranding] = useState([]);
+    const [upcomingMovies, setUpcoming] = useState([]);
+    const [topRatedMovies, setToprated] = useState([]);
     const navigation = useNavigation();
+
+    useEffect(() => {
+      getNowPlayingMovies();
+      getTrendMovies();
+      getUpComingMovies();
+      getTopRatedMovies();
+    }, [])
+    
+    const getNowPlayingMovies = async () => {
+        const data = await fetchNowPlayingMovies();
+        if (data && data.results) setNowPlayingMovies(data.results);
+    }
+    const getTrendMovies = async () => {
+        const data = await fetchTrendMovies();
+        if (data && data.results) setTranding(data.results);
+    }
+    const getUpComingMovies = async () => {
+        const data = await fetchUpComingMovies();
+        if (data && data.results) setUpcoming(data.results);
+    }
+    const getTopRatedMovies = async () => {
+        const data = await fetchTopRatedMovies();
+        if (data && data.results) setToprated(data.results);
+    }
     return (
     <View className="flex-1 bg-colors">
        {/* Search Bar and Logo */}
@@ -31,12 +57,14 @@ const index = () => {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{paddingBottom: 1}}
        >
-        {/* Trend Filmler */}
-       <TrendingMovies data={TrendingMovies}/>
+        {/* Vizyondaki Filmler */}
+       {NowPlayingMovies.length>0 && <NowPlaying data={NowPlayingMovies}/>}
        {/* Yakında Gelecek Filmler */}
-       <MovieList title="Yakında" data={upcoming} />
-        {/* Yakında Gelecek Filmler */}
-       <MovieList title="En çok beğenilenler" data={topRated} />
+       <MovieList title="Yakında" data={upcomingMovies} />
+        {/* En çok beğenilen  Filmler */}
+       <MovieList title="En çok beğenilenler" data={topRatedMovies} />
+
+       <MovieList title="Trend filmler" data={trendMovies} />
        </ScrollView>
     </View>
     );
