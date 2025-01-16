@@ -1,50 +1,97 @@
-# Welcome to your Expo app 👋
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+# The Movie DB App
 
-## Get started
+I developed this application as part of a task given by a company I applied to for their long-term internship program. The application contributed to my experience in REST API integration, UI/UX design, and basic mobile application development.
 
-1. Install dependencies
 
-   ```bash
-   npm install
-   ```
+## API Usage Example
 
-2. Start the app
+#### Fetches movies currently in theaters: (NowPlaying)
 
-   ```bash
-    npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```http
+  GET `${apibaseUrl}/movie/now_playing?api_key=${apiKey}` 
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+| Parametre | Tip     | Açıklama                |
+| :-------- | :------- | :------------------------- |
+| `apibaseUrl` | `string` | https://api.themoviedb.org/3 |
+| `apiKey` | `string` | **MUST** Your Api Key from Themoviedb |
 
-## Learn more
 
-To learn more about developing your project with Expo, look at the following resources:
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
 
-## Join the community
 
-Join our community of developers creating universal apps.
+  
+## How to run this project
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Clone the project
+
+```bash
+  git clone https://github.com/berhanbayar/TmdbApp
+```
+
+Go to root of project
+
+```bash
+  cd TmdbApp
+```
+
+You have to install Expo SDK 52
+
+```bash
+  npm add expo
+```
+
+Sunucuyu çalıştırın
+
+```bash
+  npx expo start
+```
+
+  
+## Technologies Used
+
+**Frontend:** ReactNative, Expo, NativeWindCSS, Thirdparty Libraries
+
+**Backend:** Ready API from TheMovieDb
+
+  
+## Features
+
+- A dynamic Light/Dark theme that changes based on the user's phone theme.  
+- A homepage where we can see currently showing movies, trending movies, the all-time most liked movies, and upcoming releases through API connections.  
+- A movie detail page where we can find information about the release year, runtime, cast, genres, a brief description, and similar movies.  
+- An actor page where we can get detailed information about the actors and see all the movies they have appeared in.  
+- A search page where we can look up all the movies available in the app.  
+
+  
+## Screenshots
+
+![Home Page](https://i.hizliresim.com/cjmyfxm.png)
+
+![Home Page - Dark](https://i.hizliresim.com/bv1dcw0.png)
+
+![Movie Page](https://i.hizliresim.com/43p8ig0.png)
+
+![Movie Page - Dark](https://i.hizliresim.com/6u73yef.png)
+
+![Search Page](https://i.hizliresim.com/nr6f49z.png)
+
+![Search Page - Dark](https://i.hizliresim.com/je0xxub.png)
+
+![Cast Page](https://i.hizliresim.com/5eqt7pc.png)
+
+![Cast Page -Dark](https://i.hizliresim.com/9er7kll.png)
+
+![Home Page 2](https://i.hizliresim.com/byuzhpl.png)
+
+![Home Page 2 - Dark](https://i.hizliresim.com/pztt4jq.png)
+
+
+
+  
+## Teşekkürler
+
+
+
+  
