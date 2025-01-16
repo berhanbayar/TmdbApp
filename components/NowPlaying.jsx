@@ -19,7 +19,7 @@ export default function NowPlaying ({data}) {
     //   ];
   return (
     <View>
-      <Text className='text-colors text-xl mx-4 mb-5'>Vizyondakiler</Text>
+      <Text className='text-colors text-xl mx-4 mb-5'>Now Playing</Text>
     <Carousel 
         loop={true}
         snapEnabled={true}
