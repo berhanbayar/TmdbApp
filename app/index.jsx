@@ -5,12 +5,13 @@ import { StatusBar } from 'expo-status-bar';
 import { MaterialIcons } from '@expo/vector-icons';
 import TrendingMovies from '../components/TrendingMovies'
 import MovieList from  '../components/MovieList';
+import { useNavigation } from 'expo-router';
 
 const index = () => {
     const [trending, setTranding] = useState([1,2,3]);
     const [upcoming, setUpcoming] = useState([1,2,3]);
     const [topRated, setToprated] = useState([1,2,3]);
-    
+    const navigation = useNavigation();
     return (
     <View className="flex-1 bg-colors">
        {/* Search Bar and Logo */}
@@ -19,7 +20,9 @@ const index = () => {
         <View className='flex-row justify-between items-center mx-4'>
         <MaterialIcons name="menu" size={30} color="white"/>
             <Text className='text-colors text-3xl font-bold'>Movies</Text>
-            <TouchableOpacity>
+            <TouchableOpacity
+                onPress={() => navigation.navigate('Search')}
+                >
                 <MaterialIcons name='search' size={30} color="white"/>
             </TouchableOpacity>
         </View>
