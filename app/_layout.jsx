@@ -42,6 +42,7 @@ export default function RootLayout() {
       <Stack>
         <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen name="moviescreen" options={{ headerShown: false }} />
+        <Stack.Screen name="Person" options={{ headerShown: false }} />
       </Stack>
     </ColorSchemeContext.Provider>
   );
