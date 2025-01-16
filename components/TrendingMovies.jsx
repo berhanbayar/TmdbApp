@@ -24,7 +24,7 @@ export default function TrendingMovies ({data}) {
         snapEnabled={true}
         pagingEnabled={true}
         autoPlayInterval={2000}
-        autoPlay={false}
+        autoPlay={true}
         data={data}
         renderItem={({item}) => <MovieCard item={item} handleClick={handleClick}/>}
         width={width}
